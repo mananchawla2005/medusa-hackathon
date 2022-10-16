@@ -3,7 +3,16 @@ export const state = () => ({
     items: []
   },
   email: 'henry@medusa.com',
-  shippingOptions: []
+  shippingOptions: [],
+  name: 'henry',
+  address: {
+    city: 'h',
+    country: 'US',
+    line1: 'h',
+    line2: 'h',
+    postal_code: 990087,
+    state: 'h'
+  }
 })
 
 export const getters = {
@@ -23,6 +32,14 @@ export const mutations = {
 
   SET_CART_EMAIL (state, email) {
     state.email = email
+  },
+
+  SET_CART_NAME (state, name) {
+    state.name = name
+  },
+
+  SET_CART_ADDRESS (state, address) {
+    state.address = address
   },
 
   SET_SHIPPING_OPTIONS (state, shippingOptions) {

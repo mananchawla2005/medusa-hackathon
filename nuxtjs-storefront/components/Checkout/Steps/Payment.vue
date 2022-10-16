@@ -118,15 +118,8 @@ export default {
             card: this.card,
             billing_details: {
               email: this.email,
-              address: {
-                city: 'h',
-                country: 'US',
-                line1: 'h',
-                line2: 'h',
-                postal_code: 990087,
-                state: 'h'
-              },
-              name: 'hh'
+              address: this.$store.state.cart.address,
+              name: this.$store.state.cart.name
             }
           }
         })

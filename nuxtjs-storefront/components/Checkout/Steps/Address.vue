@@ -142,6 +142,15 @@ export default {
   },
   methods: {
     submitHandler (data) {
+      this.$store.commit('cart/SET_CART_NAME', data.first_name + ' ' + data.last_name)
+      this.$store.commit('cart/SET_CART_ADDRESS', {
+        city: data.city,
+        country: data.country_code,
+        line1: data.address_1,
+        line2: data.address_2,
+        postal_code: data.postal_code,
+        state: data.province
+      })
       this.$store.dispatch('cart/updateCart', {
         shipping_address: data,
         email: this.$store.state.cart.email

@@ -28,12 +28,12 @@
 
             <div class="relative inline-block text-left">
               <div>
-                <button
+                <nuxt-link
                   class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-gray-700 hover:text-gray-600"
-                  type="button"
+                  to="/profile"
                 >
                   Account
-                </button>
+                </nuxt-link>
               </div>
             </div>
           </div>
