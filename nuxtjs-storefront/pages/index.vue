@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="bg-ui-light pb-12 lg:pb-0 w-full px-4 sm:px-6 lg:px-12">
+    <div class="bg-ui-light pb-12 lg:pb-0 w-full px-4 sm:px-6 lg:px-12 bg-gray-500">
       <div class="flex flex-col lg:flex-row items-center max-w-screen-2xl mx-auto">
         <div class="w-auto h-full object-center object-cover p-12">
           <img
@@ -47,7 +47,7 @@
           </svg>
         </nuxt-link>
       </div>
-      <div class="grid grid-cols-4 gap-8 ">
+      <div class="grid grid-cols-4 gap-8">
         <products-card
           v-for="product in products"
           :key="product.id"

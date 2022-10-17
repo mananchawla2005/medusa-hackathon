@@ -52,7 +52,8 @@ export default {
     '@nuxtjs/axios',
     ['nuxt-stripe-module', {
       publishableKey: process.env.PUBLISHABLE_KEY
-    }]
+    }],
+    ['@formkit/nuxt']
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
