@@ -40,10 +40,11 @@
         <!-- <h1 class="font-semibold text-3xl">
           {{ product.title }}
         </h1> -->
-        <div className="flex justify-between items-center">
-          <h1 className="font-semibold text-3xl">{{product.title}}</h1>
+        <div class="flex justify-between items-center">
+          <h1 class="font-semibold text-3xl">{{product.title}}</h1>
           <button @click=toggleWishlist()>
-            <p>wishlist</p>
+            <p v-if="!onWishlist" class="text-red-500">Add to Wishlist</p>
+            <p v-else class="text-red-500">Remove from Wishlist</p>
           </button>
         </div>
         <p v-if="lowestPrice.currency_code" class="text-lg mt-2 mb-4">
@@ -129,14 +130,14 @@ export default {
       wishlist: {
         items: [
           {
-            id: "1",
-            title: "Medusa Tote",
+            id: '1',
+            title: 'Medusa Tote',
             thumbnail:
-              "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tshirt.png",
-          },
-        ],
+              'https://medusa-public-images.s3.eu-west-1.amazonaws.com/tshirt.png'
+          }
+        ]
       },
-      onWishlist: false
+      onWishlist: this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id)
     }
   },
   async fetch () {
@@ -153,10 +154,10 @@ export default {
   computed: {
     currencyCode () {
       return this.$store.state.region.currency_code || 'usd'
-    },
-    onWishlist () {
-      return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
     }
+    // getWishlist () {
+    //   return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
+    // }
   },
   watch: {
     currencyCode () {
@@ -194,11 +195,12 @@ export default {
         .sort((a, b) => a.amount - b.amount)[0]
     },
     async toggleWishlist () {
-      if (!onWishlist) {
-        await this.$store.dispatch('addWishItem', product.id)
+      if (!this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id)) {
+        console.log(this.$route.params.id)
+        await this.$store.dispatch('addWishItem', this.$route.params.id)
         this.onWishlist = true
       } else {
-        const [item] = this.$store.state.wishlist.items.filter(i => i.product_id === this.product.id)
+        const [item] = this.$store.state.wishlist.items.filter(i => i.product_id === this.$route.params.id)
         await this.$store.dispatch('removeWishItem', item.id)
         this.onWishlist = false
       }

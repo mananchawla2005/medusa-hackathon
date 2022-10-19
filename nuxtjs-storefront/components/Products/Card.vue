@@ -16,12 +16,17 @@
           <h3 class="text-sm text-white font-normal m-2">
             {{ item.title }}
           </h3>
-          <p class="text-sm font-semibold text-gray-300 m-2">
+          <p v-if="isProduct" class="text-sm font-semibold text-gray-300 m-2">
             from {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
           </p>
         </div>
       </div>
     </nuxt-link>
+    <p v-if="!isProduct" class="text-sm font-semibold text-red-300 m-2">
+      <button @click="toggleWishlist()">
+        Remove
+      </button>
+    </p>
   </div>
 </template>
 
@@ -41,7 +46,8 @@ export default {
           variants: [{ prices: [{ amount: 0 }] }]
         }
       }
-    }
+    },
+    isProduct: Boolean
   },
   computed: {
     lowestPrice () {
@@ -53,7 +59,11 @@ export default {
     }
   },
   methods: {
-    formatPrice
+    formatPrice,
+    async toggleWishlist () {
+      const [item] = this.$store.state.wishlist.items.filter(i => i.product_id === this.item.id)
+      await this.$store.dispatch('removeWishItem', item.id)
+    }
   }
 }
 </script>

@@ -30,6 +30,13 @@
             <dropdowns-wishlist-popover-item v-for="item in items" :key="item.id" :item="item" />
           </ul>
         </div>
+        <div>
+          <nuxt-link to="/wishlist">
+            <button class="text-ui-dark py-2 text-sm w-full border px-3 py-1.5 rounded hover:text-black hover:bg-gray-100" v-if="items.length">
+              View Wish List
+            </button>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -47,7 +54,8 @@ export default {
   computed: {
     ...mapGetters({ items: 'wishlist_items' }),
     countItems () {
-      return this.items.reduce((sum, i) => sum + i.quantity, 0)
+      console.log(this.items)
+      return this.items.length
     }
   }
 }

@@ -6,15 +6,8 @@
       </h1>
     </div>
 
-    <div
-      v-if="products.length"
-      class="grid grid-cols-2 lg:grid-cols-4 gap-8 "
-    >
-      <products-card
-        v-for="product in products"
-        :key="product.id"
-        :item="product"
-      />
+    <div v-if="products.length" class="grid grid-cols-2 lg:grid-cols-4 gap-8 ">
+      <products-card v-for="product in products" :key="product.id" :item="product" :is-product="true" />
     </div>
   </div>
 </template>

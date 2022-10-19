@@ -105,7 +105,7 @@ export const actions = {
 
     if(state.region) {
       try {
-        const { data } = await client.axiosClient.post("/wishlist", {
+        const { data } = await this.$axios.post("/wishlist", {
           region_id: state.region.id,
         })
         commit('SET_WISHLIST', data)
