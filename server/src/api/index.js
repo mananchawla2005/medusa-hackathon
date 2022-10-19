@@ -45,13 +45,14 @@ export default () => {
   })
 
   // wishlist
-  router.get('/store/wishlist/:id', cors(corsOptions), async (req, res) => {
+  router.use(cors(storeCorsOptions))
+  router.get('/store/wishlist/:id', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.retrieve(req.params.id)
     res.json(wishlist)
   })
 
-  router.post('/store/wishlist/', cors(corsOptions), async (req, res) => {
+  router.post('/store/wishlist/', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const payload = {region_id: req.body.region_id, customer_id: null}
 
@@ -66,13 +67,13 @@ export default () => {
   })
 
   // Wishlist items
-  router.post('/store/wishlist/:id/wish-item', cors(corsOptions), async (req, res) => {
+  router.post('/store/wishlist/:id/wish-item', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.addWishItem(req.params.id, req.body.product_id)
     res.json(wishlist)
   })
 
-  router.delete('/store/wishlist/:id/wish-item/:item_id', cors(corsOptions), async (req, res) => {
+  router.delete('/store/wishlist/:id/wish-item/:item_id', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.removeWishItem(req.params.item_id)
     res.json(wishlist)
