@@ -37,9 +37,15 @@
       </div>
 
       <div class="mt-8 lg:mt-0 lg:w-2/5 lg:max-w-xl">
-        <h1 class="font-semibold text-3xl">
+        <!-- <h1 class="font-semibold text-3xl">
           {{ product.title }}
-        </h1>
+        </h1> -->
+        <div className="flex justify-between items-center">
+          <h1 className="font-semibold text-3xl">{{product.title}}</h1>
+          <button @click=toggleWishlist()>
+            <p>wishlist</p>
+          </button>
+        </div>
         <p v-if="lowestPrice.currency_code" class="text-lg mt-2 mb-4">
           {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
         </p>
@@ -119,7 +125,18 @@ export default {
       },
       quantity: 1,
       variant_id: null,
-      lowestPrice: {}
+      lowestPrice: {},
+      wishlist: {
+        items: [
+          {
+            id: "1",
+            title: "Medusa Tote",
+            thumbnail:
+              "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tshirt.png",
+          },
+        ],
+      },
+      onWishlist: false
     }
   },
   async fetch () {
@@ -136,6 +153,9 @@ export default {
   computed: {
     currencyCode () {
       return this.$store.state.region.currency_code || 'usd'
+    },
+    onWishlist () {
+      return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
     }
   },
   watch: {
@@ -172,6 +192,16 @@ export default {
           return [...prices, ...cur.prices.filter(price => price.currency_code === this.currencyCode)]
         }, [])
         .sort((a, b) => a.amount - b.amount)[0]
+    },
+    async toggleWishlist () {
+      if (!onWishlist) {
+        await this.$store.dispatch('addWishItem', product.id)
+        this.onWishlist = true
+      } else {
+        const [item] = this.$store.state.wishlist.items.filter(i => i.product_id === this.product.id)
+        await this.$store.dispatch('removeWishItem', item.id)
+        this.onWishlist = false
+      }
     }
   }
 }

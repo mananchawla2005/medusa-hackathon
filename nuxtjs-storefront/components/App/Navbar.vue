@@ -23,10 +23,10 @@
         </div>
 
         <div class="flex items-center justify-end ">
-          <div class="hidden lg:flex">
+          <div class="flex">
             <dropdowns-regions />
           </div>
-
+          <dropdowns-wishlist-popover />
           <dropdowns-cart-popover />
         </div>
       </nav>

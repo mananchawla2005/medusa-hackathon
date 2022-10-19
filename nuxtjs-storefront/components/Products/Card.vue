@@ -2,21 +2,21 @@
   <div>
     <nuxt-link :to="`/products/${item.id}`">
       <div
-        class="group relative"
+        class="group relative border border-gray-400 rounded-lg"
       >
         <div class="w-full min-h-auto bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-          <div class="w-auto h-full object-center object-cover bg-gray-100">
+          <div class="w-auto h-full object-center object-cover bg-cyan-100">
             <img
               alt=""
               :src="item.thumbnail"
             >
           </div>
         </div>
-        <div class="mt-4 flex justify-between">
-          <h3 class="text-sm text-gray-700 font-normal">
+        <div class="flex justify-between bg-blue-900 rounded-b-lg">
+          <h3 class="text-sm text-white font-normal m-2">
             {{ item.title }}
           </h3>
-          <p class="text-sm font-semibold text-gray-900">
+          <p class="text-sm font-semibold text-gray-300 m-2">
             from {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
           </p>
         </div>

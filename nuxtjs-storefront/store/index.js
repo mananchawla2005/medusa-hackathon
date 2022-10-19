@@ -1,12 +1,21 @@
 const REGION = 'medusa_region'
 const COUNTRY = 'medusa_country'
 const CART_ID = 'cart_id'
+const WISHLIST_ID = "wishlist_id"
+const isBrowser = typeof window !== "undefined"
 
 export const state = () => ({
   country: undefined,
   region: undefined,
-  regions: []
+  regions: [],
+  wishlist: {
+    items: [],
+  },
 })
+
+export const getters = {
+  wishlist_items: state => state.wishlist.items,
+}
 
 export const mutations = {
   UPDATE_REGION (state, payload) {
@@ -17,6 +26,12 @@ export const mutations = {
   },
   SET_REGIONS (state, regions) {
     state.regions = regions
+  },
+  SET_WISHLIST (state, wishlist) {
+    state.wishlist = wishlist
+    if (isBrowser) {
+      localStorage.setItem(WISHLIST_ID, wishlist.id)
+    }
   }
 }
 
@@ -66,5 +81,64 @@ export const actions = {
     dispatch('cart/updateCart', {
       region_id: state.region.id
     })
+  },
+
+  async initializeWishlist ({state, commit}) {
+    const existingWishlistId = isBrowser
+    ? localStorage.getItem(WISHLIST_ID)
+    : null
+    
+    if (existingWishlistId && existingWishlistId !== "undefined") {
+      try {
+        const { data } = await this.$axios(
+          `/wishlist/${existingWishlistId}`
+        )
+
+        if (data) {
+          commit('SET_WISHLIST', data)
+          return
+        }
+      } catch (e) {
+        localStorage.setItem(WISHLIST_ID, null)
+      }
+    }
+
+    if(state.region) {
+      try {
+        const { data } = await client.axiosClient.post("/wishlist", {
+          region_id: state.region.id,
+        })
+        commit('SET_WISHLIST', data)
+      } catch (e) {
+        console.log(e)
+      }
+    }
+  },
+
+  async addWishItem ({state, commit}, payload) {
+    const product_id = payload
+    try {
+      const { data } = await this.$axios.post(
+        `/wishlist/${state.wishlist.id}/wish-item`,
+        { product_id }
+      )
+      commit('SET_WISHLIST', data)
+    } catch (e) {
+      console.log(e)
+    }
+  },
+
+  async removeWishItem ({state, commit}, payload) {
+    const id = payload
+    try {
+      const { data } = await this.$axios.delete(
+        `/wishlist/${state.wishlist.id}/wish-item/${id}`,
+        { id }
+      )
+      commit('SET_WISHLIST', data)
+    } catch (e) {
+      console.log(e)
+    }
   }
+
 }
