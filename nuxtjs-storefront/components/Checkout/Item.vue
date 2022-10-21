@@ -13,7 +13,7 @@
           <p class="font-semibold mb-2">
             {{ item.title }}
           </p>
-          <p>Variant: {{ item.description }}</p>
+          <p>Variant: {{ display }}</p>
         </div>
         <div>
           <p class="mb-2">
@@ -39,6 +39,11 @@ import { formatPrice } from '@/utils/format-price'
 
 export default {
   name: 'CartItem',
+  data () {
+    return {
+      display: ''
+    }
+  },
   props: {
     item: {
       type: Object,
@@ -49,9 +54,22 @@ export default {
   },
   computed: {
     ...mapGetters({ cartCurrencyCode: 'cart/cartCurrencyCode' })
+
   },
   methods: {
-    formatPrice
+    formatPrice,
+    async getVariant () {
+      const result = []
+      const variant = await this.$axios(`/variants/${this.item.variant_id}`)
+      console.log(variant.data.variant)
+      variant.data.variant.options.forEach((element) => {
+        result.push(element.value)
+      })
+      this.display = result.join(' ')
+    }
+  },
+  mounted () {
+    this.getVariant()
   }
 }
 </script>

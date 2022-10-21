@@ -8,8 +8,9 @@
         <div>
           <button
             v-for="value in option.values"
+            :style="computeColor(value.value)"
             :key="value.id"
-            :class="value.value === currentOptions[option.id] ? 'bg-gray-500 text-white' : 'bg-gray-200 text-black'"
+            :class="[(value.value === currentOptions[option.id] ? 'bg-gray-500 text-white' : 'bg-gray-200 text-black'), computeClassColor(value.value), computeClassHover(value.value, option)]"
             class="inline-flex items-center justify-center rounded-sm text-xs h-12 w-12 mr-2 last:mr-0 hover:bg-gray-500 hover:text-white"
             @click="updateOption(option.id, value.value )"
           >
@@ -59,8 +60,32 @@ export default {
   },
   methods: {
     updateOption (optionId, value) {
+      console.log(JSON.stringify(this.options))
       this.currentOptions[optionId] = value
       this.$emit('updateSelectedOptions', this.currentOptions)
+    },
+    computeColor (val) {
+      console.log(val)
+      if (val.startsWith('#')) {
+        return `background-color: ${val}; color: ${val};`
+      } else {
+        return ''
+      }
+    },
+    computeClassColor (val) {
+      if (val.startsWith('#')) {
+        return 'hover:border hover:border-red-500'
+      } else {
+        return ''
+      }
+    },
+    computeClassHover (val, option) {
+      if (val.startsWith('#')) {
+        console.log(val === this.currentOptions[option.id])
+        return val === this.currentOptions[option.id] ? 'border-spacing-2 border-red-500' : ''
+      } else {
+        return ''
+      }
     }
   }
 }

@@ -9,7 +9,13 @@ export default () => {
     origin: projectConfig.store_cors.split(","),
     credentials: true,
   }
-
+  const adminCorsOptions = {
+    origin: projectConfig.admin_cors.split(","),
+    credentials: true,
+  }
+  router.use(bodyParser.json())
+  // router.use(cors(storeCorsOptions))
+  router.options("/store/products/:id/reviews", cors(storeCorsOptions))
   router.get("/store/products/:id/reviews", cors(storeCorsOptions), (req, res) => {
     const productReviewService = req.scope.resolve("productReviewService")
     productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
@@ -19,7 +25,6 @@ export default () => {
     })
   })
 
-  router.use(bodyParser.json())
   router.options("/store/products/:id/reviews", cors(storeCorsOptions))
   router.post("/store/products/:id/reviews", cors(storeCorsOptions), (req, res) => {
     const productReviewService = req.scope.resolve("productReviewService")
@@ -29,13 +34,13 @@ export default () => {
       })
     })
   })
-
-  const corsOptions = {
-    origin: projectConfig.admin_cors.split(","),
-    credentials: true,
-  }
-  router.options("/admin/products/:id/reviews", cors(corsOptions))
-  router.get("/admin/products/:id/reviews", cors(corsOptions), async (req, res) => {
+  // const corsOptions = {
+  //   origin: projectConfig.admin_cors.split(","),
+  //   credentials: true,
+  // }
+  // router.use(cors(corsOptions))
+  router.options("/admin/products/:id/reviews", cors(adminCorsOptions))
+  router.get("/admin/products/:id/reviews", cors(adminCorsOptions), async (req, res) => {
     const productReviewService = req.scope.resolve("productReviewService")
     productReviewService.getProductReviews(req.params.id).then((product_reviews) => {
       return res.json({
@@ -45,13 +50,15 @@ export default () => {
   })
 
   // wishlist
-  router.use(cors(storeCorsOptions))
+  // router.use(cors(storeCorsOptions))
+  router.options("/store/wishlist/:id", cors(storeCorsOptions))
   router.get('/store/wishlist/:id', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.retrieve(req.params.id)
     res.json(wishlist)
   })
 
+  router.options("/store/wishlist", cors(storeCorsOptions))
   router.post('/store/wishlist/', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const payload = {region_id: req.body.region_id, customer_id: null}
@@ -67,12 +74,14 @@ export default () => {
   })
 
   // Wishlist items
+  router.options("/store/wishlist/:id/wish-item", cors(storeCorsOptions))
   router.post('/store/wishlist/:id/wish-item', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.addWishItem(req.params.id, req.body.product_id)
     res.json(wishlist)
   })
 
+  router.options("/store/wishlist/:id/wish-item/:item_id", cors(storeCorsOptions))
   router.delete('/store/wishlist/:id/wish-item/:item_id', cors(storeCorsOptions), async (req, res) => {
     const wishlistService = req.scope.resolve('wishlistService')
     const wishlist = await wishlistService.removeWishItem(req.params.item_id)

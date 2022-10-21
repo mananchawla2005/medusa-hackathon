@@ -6,7 +6,7 @@
           <div class="hidden lg:flex flex-col items-center mr-4">
             <div class="w-auto h-full object-center object-cover px-4 space-y-4">
               <img
-                v-for="image in product.images"
+                v-for="image in getProductImages"
                 :key="image.id"
                 width="150"
                 alt=""
@@ -23,12 +23,18 @@
                 v-for="image in product.images"
                 :key="image.id"
               >
-                <div v-if="image.id === imageToShow">
+                <div v-if="image.id === imageToShow" style="position: relative;">
                   <img
                     alt=""
                     :src="image.url"
                     class=" w-full"
                   >
+                  <!-- <products-svg :url="uri" class="text-green" ></products-svg> -->
+                  <inline-svg
+                    :src="getProductSvg"
+                    style="position: absolute;mix-blend-mode: multiply;top: 0px;"
+                    aria-label="My image"
+                  />
                 </div>
               </div>
             </div>
@@ -41,10 +47,16 @@
           {{ product.title }}
         </h1> -->
         <div class="flex justify-between items-center">
-          <h1 class="font-semibold text-3xl">{{product.title}}</h1>
-          <button @click=toggleWishlist()>
-            <p v-if="!onWishlist" class="text-red-500">Add to Wishlist</p>
-            <p v-else class="text-red-500">Remove from Wishlist</p>
+          <h1 class="font-semibold text-3xl">
+            {{ product.title }}
+          </h1>
+          <button @click="toggleWishlist()">
+            <p v-if="!onWishlist" class="text-green-700">
+              Add to Wishlist
+            </p>
+            <p v-else class="text-red-500">
+              Remove from Wishlist
+            </p>
           </button>
         </div>
         <p v-if="lowestPrice.currency_code" class="text-lg mt-2 mb-4">
@@ -105,10 +117,14 @@
 
 <script>
 import { mapActions } from 'vuex'
+import InlineSvg from 'vue-inline-svg'
 import { formatPrice } from '@/utils/format-price'
 
 export default {
   name: 'ProductDetail',
+  components: {
+    InlineSvg
+  },
   data () {
     return {
       showDetails: false,
@@ -116,12 +132,12 @@ export default {
       product: {
         id: 1,
         title: 'Medusa Coffee Mug',
-        description: 'Every programmer\'s best friend.',
+        description: "Every programmer's best friend.",
         thumbnail: '',
         variants: [{ prices: [{ amount: 0, currency_code: 'usd' }] }],
         images: [
-          { id: 'default_image', url: 'https://picsum.photos/600/400' },
-          { id: 'another_image', url: 'https://picsum.photos/600/400?id=50' }
+          { id: 'default_image', url: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png' },
+          { id: 'another_image', url: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png' }
         ]
       },
       quantity: 1,
@@ -132,12 +148,12 @@ export default {
           {
             id: '1',
             title: 'Medusa Tote',
-            thumbnail:
-              'https://medusa-public-images.s3.eu-west-1.amazonaws.com/tshirt.png'
+            thumbnail: 'https://medusa-public-images.s3.eu-west-1.amazonaws.com/tshirt.png'
           }
         ]
       },
-      onWishlist: this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id)
+      onWishlist: this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id),
+      uri: 'http://localhost:9001/nuxt-store/sweatshirt-1666368725531.svg'
     }
   },
   async fetch () {
@@ -154,6 +170,33 @@ export default {
   computed: {
     currencyCode () {
       return this.$store.state.region.currency_code || 'usd'
+    },
+    getProductImages () {
+      const filtered = []
+      for (let index = 0; index < this.product.images.length; index++) {
+        const element = this.product.images[index]
+        // console.log(element.url)
+        if (element.url.endsWith('.png') || element.url.endsWith('.jpg') || element.url.endsWith('.webp')) {
+          filtered.push(element)
+        }
+      }
+      return filtered
+    },
+    getProductSvg () {
+      const filtered = []
+      const nonfiltered = []
+      for (let index = 0; index < this.product.images.length; index++) {
+        const element = this.product.images[index]
+        // console.log(element.url)
+        if (element.url.endsWith('.png') || element.url.endsWith('.jpg') || element.url.endsWith('.webp')) {
+          filtered.push(element)
+        } else {
+          nonfiltered.push(element.url)
+        }
+      }
+      // this.uri = nonfiltered.join('')
+      // console.log(JSON.stringify(nonfiltered))
+      return nonfiltered.join('')
     }
     // getWishlist () {
     //   return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
@@ -178,14 +221,15 @@ export default {
       }, []).filter((variant) => {
         return Object.values(value).sort().join('__') === variant.options.sort().join('__')
       })
-
       this.variant_id = variant[0].variantId
     },
     increment () {
       this.quantity += 1
     },
     decrement () {
-      if (this.quantity > 1) { this.quantity -= 1 }
+      if (this.quantity > 1) {
+        this.quantity -= 1
+      }
     },
     filterLowestPrice () {
       this.lowestPrice = this.product.variants

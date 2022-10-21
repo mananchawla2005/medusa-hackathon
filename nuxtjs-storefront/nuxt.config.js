@@ -53,7 +53,8 @@ export default {
     ['nuxt-stripe-module', {
       publishableKey: process.env.PUBLISHABLE_KEY
     }],
-    ['@formkit/nuxt']
+    ['@formkit/nuxt'],
+    ['@nuxtjs/eslint-module']
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -64,5 +65,9 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+  },
+
+  eslint: {
+    fix: true
   }
 }

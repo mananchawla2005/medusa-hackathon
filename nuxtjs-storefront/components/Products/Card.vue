@@ -22,7 +22,7 @@
         </div>
       </div>
     </nuxt-link>
-    <p v-if="!isProduct" class="text-sm font-semibold text-red-300 m-2">
+    <p v-if="!isProduct" class="text-sm font-semibold text-red-500 m-2">
       <button @click="toggleWishlist()">
         Remove
       </button>
