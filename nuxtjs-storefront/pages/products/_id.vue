@@ -186,20 +186,21 @@ export default {
       return filtered
     },
     getProductSvg () {
-      const filtered = []
-      const nonfiltered = []
-      for (let index = 0; index < this.product.images.length; index++) {
-        const element = this.product.images[index]
-        // console.log(element.url)
-        if (element.url.endsWith('.png') || element.url.endsWith('.jpg') || element.url.endsWith('.webp')) {
-          filtered.push(element)
-        } else {
-          nonfiltered.push(element.url)
-        }
-      }
-      // this.uri = nonfiltered.join('')
-      // console.log(JSON.stringify(nonfiltered))
-      return nonfiltered.join('')
+      // const filtered = []
+      // const nonfiltered = []
+      // for (let index = 0; index < this.product.images.length; index++) {
+      //   const element = this.product.images[index]
+      //   // console.log(element.url)
+      //   if (element.url.endsWith('.png') || element.url.endsWith('.jpg') || element.url.endsWith('.webp')) {
+      //     filtered.push(element)
+      //   } else {
+      //     nonfiltered.push(element.url)
+      //   }
+      // }
+      // // this.uri = nonfiltered.join('')
+      // // console.log(JSON.stringify(nonfiltered))
+      // return nonfiltered.join('')
+      return require(`~/assets/${this.$route.params.id}.svg`)
     }
     // getWishlist () {
     //   return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
@@ -216,7 +217,7 @@ export default {
     }),
     formatPrice,
     updateSelectedColor (value) {
-      // console.log('CHanging Color', value)
+      console.log('CHanging Color', value)
       this.color = value
     },
     updateSelectedOptions (value) {

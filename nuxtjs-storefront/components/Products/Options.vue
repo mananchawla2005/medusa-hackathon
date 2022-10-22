@@ -74,6 +74,7 @@ export default {
       this.currentOptions[optionId] = value
       this.$emit('updateSelectedOptions', this.currentOptions)
       if (value.startsWith('#')) {
+        console.log('yes')
         this.$emit('updateSelectedColor', value)
       }
     },
