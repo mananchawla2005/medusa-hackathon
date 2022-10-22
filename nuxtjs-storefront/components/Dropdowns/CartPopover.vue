@@ -67,7 +67,7 @@ export default {
   computed: {
     ...mapGetters({ items: 'cart/items' }),
     countItems () {
-      console.log(this.items)
+      // console.log(this.items)
       return this.items.reduce((sum, i) => sum + i.quantity, 0)
     }
   }

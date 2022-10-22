@@ -34,6 +34,7 @@
                     :src="getProductSvg"
                     style="position: absolute;mix-blend-mode: multiply;top: 0px;"
                     aria-label="My image"
+                    :fill="color"
                   />
                 </div>
               </div>
@@ -72,6 +73,7 @@
         <products-options
           :options="product.options"
           @updateSelectedOptions="updateSelectedOptions"
+          @updateSelectedColor="updateSelectedColor"
         />
 
         <div class="inline-flex mt-12">
@@ -153,7 +155,8 @@ export default {
         ]
       },
       onWishlist: this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id),
-      uri: 'http://localhost:9001/nuxt-store/sweatshirt-1666368725531.svg'
+      uri: 'http://localhost:9001/nuxt-store/sweatshirt-1666368725531.svg',
+      color: ''
     }
   },
   async fetch () {
@@ -212,6 +215,10 @@ export default {
       addItem: 'cart/addItem'
     }),
     formatPrice,
+    updateSelectedColor (value) {
+      // console.log('CHanging Color', value)
+      this.color = value
+    },
     updateSelectedOptions (value) {
       const variant = this.product.variants.reduce((acc, cur) => {
         return [...acc, {
@@ -240,7 +247,7 @@ export default {
     },
     async toggleWishlist () {
       if (!this.$store.state.wishlist.items.some(i => i.product_id === this.$route.params.id)) {
-        console.log(this.$route.params.id)
+        // console.log(this.$route.params.id)
         await this.$store.dispatch('addWishItem', this.$route.params.id)
         this.onWishlist = true
       } else {
