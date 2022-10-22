@@ -55,12 +55,16 @@ export default {
       this.currentOptions = val.reduce((acc, curr) => {
         return { ...acc, [curr.id]: curr.values[0].value }
       }, {})
-      const findHash = JSON.stringify(Object.values(this.currentOptions)[1]).replaceAll('"', '')
       // console.log(JSON.stringify(Object.values(this.currentOptions)[1]).replaceAll('"', ''))
       this.$emit('updateSelectedOptions', this.currentOptions)
-      if (findHash.startsWith('#')) {
-        // console.log('yes it does')
-        this.$emit('updateSelectedColor', findHash)
+      try {
+        const findHash = JSON.stringify(Object.values(this.currentOptions)[1]).replaceAll('"', '')
+        if (findHash.startsWith('#')) {
+          // console.log('yes it does')
+          this.$emit('updateSelectedColor', findHash)
+        }
+      } catch (error) {
+        // console.log(error)
       }
     }
   },

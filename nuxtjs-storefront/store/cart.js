@@ -63,6 +63,7 @@ export const actions = {
     }
 
     const { cart: updateCart } = await this.$axios.$post(`/carts/${cartId}/line-items`, { ...item })
+    console.log(JSON.stringify(updateCart))
     commit('SET_CART', updateCart)
   },
 

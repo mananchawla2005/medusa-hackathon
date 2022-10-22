@@ -6,7 +6,7 @@
 - [x] Webpage Design 
 - [x] Header svg
 - [ ] Search algolia
-- [ ] Color preview svg
+- [x] Color preview svg
 - [ ] Reviews component
 - [ ] Notifications mailchimp
 - [x] MiniIO integration
