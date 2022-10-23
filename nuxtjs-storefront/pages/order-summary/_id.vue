@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-8">
+  <div class="container mx-auto p-8 ">
     <div v-if="order" class="layout-base flex justify-center pb-16">
       <div class="max-w-xl">
         <span class="text-xs font-medium mb-2">THANK YOU</span>

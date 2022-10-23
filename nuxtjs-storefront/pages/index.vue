@@ -142,18 +142,15 @@
             </div>
           </div>
           <h2 class="text-xl font-semibold leading-7 my-4">
-            I received a job offer mid-course, and the subjects I learned were
-            current, if not more so, in the company I joined. I honestly feel I
-            got every penny’s worth.
+            I was skeptical about the promises they made about the product but the moment I recived the package and opened it
+            , I knew I made the right choice. They have the best kind of fabric I have come across in recent times.
           </h2>
           <p class="text-md text-opacity-75 text-gray-300">
-            “ I was an EMT for many years before I joined the bootcamp. I’ve
-            been looking to make a transition and have heard some people who had
-            an amazing experience here. I signed up for the free intro course
-            and found it incredibly fun! I enrolled shortly thereafter. The next
-            12 weeks was the best - and most grueling - time of my life. Since
-            completing the course, I’ve successfully switched careers, working
-            as a Software Engineer at a VR startup. ”
+            “ I was looking for nice and comfy sweatshirt for me! I have a separate collection of sweats in my wadrobe.
+            I personally find difficult to immediately like any sweatshirt but this one caught my eye. The Designs and the color
+            optins were huge.. I was flabergasted by the same! I was skeptical about the promises they made about the product but the moment I recived the package and opened it
+            , I knew I made the right choice. They have the best kind of fabric I have come across in recent times.
+            ”
           </p>
         </blockquote>
 
@@ -175,13 +172,12 @@
           </div>
 
           <h2 class="text-xl font-semibold leading-7 my-4">
-            The team was very supportive and kept me motivated
+            The support team was very supportive and answered all of my queries!
           </h2>
 
           <p class="text-md text-gray-300 text-opacity-75">
-            “ I started as a total newbie with virtually no coding skills. I now
-            work as a mobile engineer for a big company. This was one of the
-            best investments I’ve made in myself. ”
+            “ I was having a problem somwhere during the cart payment.. I was suprised by how quickly they answered all of my queries and fixed the issues...
+            overall!  The support team was very supportive and answered all of my queries!”
           </p>
         </blockquote>
 
@@ -207,8 +203,7 @@
           </h2>
 
           <p class="text-md">
-            “ Thank you for the wonderful experience! I now have a job I really
-            enjoy, and make a good living while doing something I love. ”
+            “ An overall wonderful and rewarding experience wasnt disappointed a bit by the whole concept. Definitely recommend this to everyone! ”
           </p>
         </blockquote>
 
@@ -230,16 +225,14 @@
           </div>
 
           <h2 class="text-xl font-semibold leading-7 my-4">
-            Awesome teaching support from TAs who did the bootcamp themselves.
-            Getting guidance from them and learning from their experiences was
-            easy.
+            Never disappointed by Your Own Swag Store and their services.
           </h2>
 
           <p class="text-md text-gray-300 text-opacity-75">
-            “ The staff seem genuinely concerned about my progress which I find
-            really refreshing. The program gave me the confidence necessary to
-            be able to go out in the world and present myself as a capable
-            junior developer. The standard is above the rest. You will get the
+            “ The staff seem genuinely concerned about the products which I find
+            really refreshing. The product gave me the the comfort to
+            be able to chill out and be warm during the winters.
+            without worrying about my fav color The standard is above the rest. You will get the
             personal attention you need from an incredible community of smart
             and amazing people. ”
           </p>
@@ -268,18 +261,7 @@
           </h2>
 
           <p class="text-md">
-            “ Before joining the bootcamp, I’ve never written a line of code. I
-            needed some structure from professionals who can help me learn
-            programming step by step. I was encouraged to enroll by a former
-            student of theirs who can only say wonderful things about the
-            program. The entire curriculum and staff did not disappoint. They
-            were very hands-on and I never had to wait long for assistance. The
-            agile team project, in particular, was outstanding. It took my
-            learning to the next level in a way that no tutorial could ever
-            have. In fact, I’ve often referred to it during interviews as an
-            example of my developent experience. It certainly helped me land a
-            job as a full-stack developer after receiving multiple offers. 100%
-            recommend! ”
+            “ Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum ”
           </p>
         </blockquote>
       </div>

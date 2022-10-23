@@ -7,8 +7,8 @@
 - [x] Header svg
 - [x] Color preview svg
 - [x] MiniIO integration
-- [ ] svg
-- [ ] sample data
+- [x] svg
+- [x] sample data
 - [ ] dump sql data
 - [ ] make readme file with instructions
- 
+- [x] about page

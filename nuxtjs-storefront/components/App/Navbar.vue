@@ -18,6 +18,12 @@
               >
                 Products
               </nuxt-link>
+              <nuxt-link
+                to="/about"
+                class="block mt-4 mr-4 lg:inline-block lg:mt-0 text-black hover:text-gray-900 last:mr-0"
+              >
+                About
+              </nuxt-link>
             </div>
           </div>
         </div>

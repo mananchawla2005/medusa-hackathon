@@ -62,7 +62,7 @@
             </button>
           </div>
           <p v-if="lowestPrice.currency_code" class="text-lg mt-2 mb-4">
-            {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
+            from {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
           </p>
           <p v-else>
             10 USD
@@ -203,7 +203,12 @@ export default {
       // // this.uri = nonfiltered.join('')
       // // console.log(JSON.stringify(nonfiltered))
       // return nonfiltered.join('')
-      return require(`~/assets/products/${this.$route.params.id}.svg`)
+      try {
+        return require(`~/assets/products/${this.$route.params.id}.svg`)
+      } catch (error) {
+        return require('~/assets/empty.svg')
+      }
+      // return require(`~/assets/products/${this.$route.params.id}.svg`)
     }
     // getWishlist () {
     //   return this.$store.state.wishlist.items.some(i => i.product_id === this.product.id)
