@@ -2,24 +2,36 @@
   <div>
     <nuxt-link :to="`/products/${item.id}`">
       <div
-        class="group relative border border-gray-400 rounded-lg"
+        class="group relative border border-gray-200 rounded-lg"
       >
-        <div class="w-full min-h-auto bg-gray-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-80 lg:aspect-none">
-          <div class="w-auto h-full object-center object-cover bg-cyan-100">
+        <div class="w-full min-h-auto bg-pink-200 aspect-w-1 aspect-h-1 rounded-md overflow-hidden group-hover:opacity-75 lg:h-auto lg:aspect-none">
+          <div class="w-auto h-auto object-center object-cover">
             <img
               alt=""
               :src="item.thumbnail"
+              class="border-b-2 border-black"
             >
+            <div class="bg-pink-200">
+              <h3 class="text-black font-extrabold text-lg m-5">
+                {{ item.title }}
+              </h3>
+              <p v-if="isProduct" class="text-lg font-semibold  m-5">
+                Starting from {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
+              </p>
+              <button v-if="isProduct" class="btn-ui !rounded-4xl !shadow-lg !bg-pink-900 !text-lg !m-5">
+                Go to Product
+              </button>
+            </div>
           </div>
         </div>
-        <div class="flex justify-between bg-blue-900 rounded-b-lg">
+        <!-- <div class="flex justify-between bg-blue-900 rounded-b-lg">
           <h3 class="text-sm text-white font-normal m-2">
             {{ item.title }}
           </h3>
           <p v-if="isProduct" class="text-sm font-semibold text-gray-300 m-2">
             from {{ formatPrice(lowestPrice.amount, lowestPrice.currency_code) }}
           </p>
-        </div>
+        </div> -->
       </div>
     </nuxt-link>
     <p v-if="!isProduct" class="text-sm font-semibold text-red-500 m-2">
@@ -67,3 +79,10 @@ export default {
   }
 }
 </script>
+<style>
+@media (min-width: 1024px) {
+    .lg\:h-product {
+        height: 40rem/* 384px */;
+    }
+}
+</style>

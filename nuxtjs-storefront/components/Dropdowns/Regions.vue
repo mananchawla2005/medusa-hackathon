@@ -3,7 +3,7 @@
     <div v-if="$store.state.region">
       <button
         v-click-outside="showRegionsMenu"
-        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-white hover:text-gray-200 flex items-center"
+        class="inline-flex justify-center w-full px-4 py-2 text-sm font-medium text-black hover:text-gray-900 flex items-center"
         @click="showRegionsMenu = !showRegionsMenu"
       >
         <span class="mr-1">{{ $store.state.country.display_name }} / {{ $store.state.region.currency_code.toUpperCase() }}</span>
@@ -25,7 +25,7 @@
           <button
             v-for="country in region.countries"
             :key="country.id"
-            class="block py-3 text-sm w-full text-left text-gray-500 hover:text-black not-last:border-b border-gray-300"
+            class="block py-3 text-sm w-full text-left text-black not-last:border-b border-gray-300"
             @click="$store.dispatch('updateRegion', {region: region, country: country})"
           >
             {{ country.display_name }} / {{ region.currency_code.toUpperCase() }}

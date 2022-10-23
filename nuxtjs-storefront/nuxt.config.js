@@ -10,7 +10,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'nuxtjs-storefront',
+    title: 'Your Own Swag Store',
     htmlAttrs: {
       lang: 'en'
     },

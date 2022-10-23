@@ -5,8 +5,10 @@
 - [x] Wishlist
 - [x] Webpage Design 
 - [x] Header svg
-- [ ] Search algolia
 - [x] Color preview svg
-- [ ] Reviews component
-- [ ] Notifications mailchimp
 - [x] MiniIO integration
+- [ ] svg
+- [ ] sample data
+- [ ] dump sql data
+- [ ] make readme file with instructions
+ 

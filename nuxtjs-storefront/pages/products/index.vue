@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto p-8">
+  <div class="container mx-auto p-8 ">
     <div class="w-full border-b border-ui-medium pb-6 mb-2 lg:mb-6 flex items-center justify-between">
       <h1 class="font-semibold text-3xl">
         All Products

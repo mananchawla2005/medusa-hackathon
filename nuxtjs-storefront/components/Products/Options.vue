@@ -10,8 +10,8 @@
             v-for="value in option.values"
             :key="value.id"
             :style="computeColor(value.value)"
-            :class="[(value.value === currentOptions[option.id] ? 'bg-gray-500 text-white' : 'bg-gray-200 text-black'), computeClassColor(value.value), computeClassHover(value.value, option)]"
-            class="inline-flex items-center justify-center rounded-sm text-xs h-12 w-12 mr-2 last:mr-0 hover:bg-gray-500 hover:text-white"
+            :class="[(value.value === currentOptions[option.id] ? 'bg-gray-900 text-white' : 'bg-gray-600 text-white'), computeClassColor(value.value), computeClassHover(value.value, option)]"
+            class="inline-flex items-center justify-center rounded-full text-xs h-12 w-12 mr-2 last:mr-0 hover:bg-gray-700 hover:text-white"
             @click="updateOption(option.id, value.value )"
           >
             {{ value.value }}
