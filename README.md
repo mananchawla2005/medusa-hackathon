@@ -31,7 +31,6 @@
 
 - The project is open for contributions. You can make an issue or assign yourselves one and then can start working on it. The project uses node.js for serving the files in combination with ejs as the templating engine. While making a pull request, make sure to pr to the dev branch rather than the master branch.
 
-**The website is hosted by resources from fosshost. Fosshost is a non-profit organisation that provides compute resources/dns/domains to open-source projects. Be sure to check them out**
 
 
 ## Thanks to all Contributors
